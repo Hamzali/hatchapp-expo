@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types'
 import {
   Image,
   Platform,
@@ -18,9 +19,6 @@ export default class HomeScreen extends React.Component {
     header: null,
   };
 
-  _handleCreatePress = () => {
-
-  }
 
   render() {
     return (
@@ -39,6 +37,10 @@ export default class HomeScreen extends React.Component {
         <Button title={"Create Game!"} onPress={this._handleCreatePress}/>
       </View>
     );
+  }
+
+  _handleCreatePress = () => {
+    this.props.navigation.navigate("Chat");
   }
 
 }

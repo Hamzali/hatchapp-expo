@@ -4,12 +4,11 @@ import { createStackNavigator, createBottomTabNavigator } from 'react-navigation
 
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
-import LinksScreen from '../screens/LinksScreen';
+import ScoreBoard from '../screens/ScoreBoard';
 import SettingsScreen from '../screens/SettingsScreen';
-import Chat from '../screens/Chat';
 
 const HomeStack = createStackNavigator({
-  Home: Chat,
+  Home: HomeScreen,
 });
 
 HomeStack.navigationOptions = {
@@ -26,12 +25,13 @@ HomeStack.navigationOptions = {
   ),
 };
 
-const LinksStack = createStackNavigator({
-  Links: LinksScreen,
+const ScoreBoardStack= createStackNavigator({
+  ScoreBoard: ScoreBoard,
 });
 
-LinksStack.navigationOptions = {
-  tabBarLabel: 'Links',
+ScoreBoardStack.navigationOptions = {
+  tabBarLabel: 'ScoreBoard',
+  title: "ScoreBoard",
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
@@ -46,6 +46,7 @@ const SettingsStack = createStackNavigator({
 
 SettingsStack.navigationOptions = {
   tabBarLabel: 'Settings',
+  title: "Settings",
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
@@ -55,7 +56,10 @@ SettingsStack.navigationOptions = {
 };
 
 export default createBottomTabNavigator({
+  ScoreBoardStack,
   HomeStack,
-  LinksStack,
   SettingsStack,
+}, {
+  initialRouteName: "HomeStack",
+  initialRoute: "HomeStack"
 });

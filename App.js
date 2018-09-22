@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import { Platform, StatusBar, StyleSheet, View, KeyboardAvoidingView, Text } from 'react-native';
 import { AppLoading, Asset, Font, Icon } from 'expo';
 import AppNavigator from './navigation/AppNavigator';
@@ -7,9 +7,11 @@ import HomeScreen from "./screens/HomeScreen"
 export default class App extends React.Component {
   state = {
     isLoadingComplete: false,
+    roomId: null
   };
-
+  
   render() {
+    const {roomId} = this.state;
     if (!this.state.isLoadingComplete && !this.props.skipLoadingScreen) {
       return (
         <AppLoading
@@ -21,13 +23,14 @@ export default class App extends React.Component {
     } else {
       return (
         <View style={styles.container}>
-          {/* <Chat/>
-          <KeyboardAvoidingView behavior="padding" enabled>
-          </KeyboardAvoidingView> */}
-          <HomeScreen/>
+          <AppNavigator/>
         </View>
       );
     }
+  }
+
+  _handleCreateButton = () => {
+    this.setState({roomId: "rm12"});
   }
 
   _loadResourcesAsync = async () => {
