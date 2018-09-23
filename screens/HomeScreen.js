@@ -1,68 +1,55 @@
 import React from 'react';
-import PropTypes from 'prop-types'
+import {connect} from "react-redux";
 import {
-  Image,
-  Platform,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  Button,
-  View,
+    Image,
+    StyleSheet,
+    Button,
+    View
 } from 'react-native';
-import { WebBrowser } from 'expo';
 
-import { MonoText } from '../components/StyledText';
+class HomeScreen extends React.Component {
+    _handleCreatePress = () => {
+        this.props.navigation.navigate("GameScreen");
+    };
 
-export default class HomeScreen extends React.Component {
-  static navigationOptions = {
-    header: null,
-  };
+    render() {
+        return (
+            <View style={styles.container}>
+                <View style={styles.welcomeContainer}>
+                    <Image
+                        source={require('../assets/images/robot-dev.png')}
+                        style={styles.welcomeImage}/>
+                </View>
 
-
-  render() {
-    return (
-      <View style={styles.container}>
-        <View style={styles.welcomeContainer}>
-          <Image
-            source={
-              __DEV__
-                ? require('../assets/images/robot-dev.png')
-                : require('../assets/images/robot-prod.png')
-            }
-            style={styles.welcomeImage}
-          />
-        </View>
-
-        <Button title={"Create Game!"} onPress={this._handleCreatePress}/>
-      </View>
-    );
-  }
-
-  _handleCreatePress = () => {
-    this.props.navigation.navigate("Chat");
-  }
+                <Button title={"Create Game!"} onPress={this._handleCreatePress}/>
+            </View>
+        );
+    }
 
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    // padding: 10,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: '#fff',
-  },
-  welcomeContainer: {
-    alignItems: 'center',
-    marginTop: 10,
-    marginBottom: 20,
-  },
-  welcomeImage: {
-    width: 100,
-    height: 80,
-    resizeMode: 'contain',
-    marginTop: 3,
-    marginLeft: -10,
-  }
+    container: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: '#fff'
+    },
+    welcomeContainer: {
+        alignItems: 'center',
+        marginTop: 10,
+        marginBottom: 20
+    },
+    welcomeImage: {
+        width: 100,
+        height: 80,
+        resizeMode: 'contain',
+        marginTop: 3,
+        marginLeft: -10
+    }
 });
+
+const mapStore = () => ({});
+const mapActions = () => ({});
+
+export default connect(mapStore, mapActions)(HomeScreen);
