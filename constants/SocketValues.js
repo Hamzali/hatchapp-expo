@@ -7,6 +7,9 @@ export default {
     HATCH_LIMIT: 10,
     EVENTS: {
         CONNECTED: 'connected',
+        DISCONNECTED: 'disconnected',
+        CONNECT_ROOM: 'connect_room',
+        ROOM_CONNECTED: 'room_connected',
         HATCH_STATUS: 'hatch',
         ANSWER: 'answer',
         TELL_ANSWER: 'tell_answer',

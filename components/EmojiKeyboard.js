@@ -21,6 +21,7 @@ class EmojiKeyboard extends Component {
     };
 
     render() {
+        const {emoji} = this.state;
         return <Fragment>
             <View style={styles.emojiInputContainer}>
                 <Text style={styles.emojiInpuText}>{emoji}</Text>

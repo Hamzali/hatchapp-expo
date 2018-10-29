@@ -3,7 +3,7 @@ import io from 'socket.io-client';
 import reducer from "./reducers/index";
 import SocketValues from "../constants/SocketValues";
 
-let socket = io('http://b9b22bdc.ngrok.io');
+let socket = io('http://192.168.1.25:8081');
 
 const socketIoMiddleware = () => next => action => {
     const {payload, type} = action;
@@ -24,6 +24,8 @@ Object.keys(EVENTS).forEach(eventKey => {
         store.dispatch({type: EVENTS[eventKey], payload: data});
     });
 });
-
+socket.on('disconnect', () => {
+    store.dispatch({type: EVENTS.DISCONNECTED})
+})
 
 export default store

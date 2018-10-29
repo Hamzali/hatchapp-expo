@@ -4,15 +4,16 @@ import {
     Image,
     StyleSheet,
     Button,
-    View
+    View,
+    Text
 } from 'react-native';
 
 class HomeScreen extends React.Component {
     _handleCreatePress = () => {
         this.props.navigation.navigate("GameScreen");
     };
-
     render() {
+        const {isConnected} = this.props
         return (
             <View style={styles.container}>
                 <View style={styles.welcomeContainer}>
@@ -21,7 +22,8 @@ class HomeScreen extends React.Component {
                         style={styles.welcomeImage}/>
                 </View>
 
-                <Button title={"Create Game!"} onPress={this._handleCreatePress}/>
+                <Button title={"Create Game!"} disabled={!isConnected} onPress={this._handleCreatePress}/>
+                {!isConnected && <Text>Check your connection</Text>}
             </View>
         );
     }
@@ -49,7 +51,9 @@ const styles = StyleSheet.create({
     }
 });
 
-const mapStore = () => ({});
+const mapStore = store => ({
+    isConnected: store.isConnected
+});
 const mapActions = () => ({});
 
 export default connect(mapStore, mapActions)(HomeScreen);
