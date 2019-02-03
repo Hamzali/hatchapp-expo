@@ -1,31 +1,47 @@
-import {createStore, applyMiddleware} from 'redux';
-import io from 'socket.io-client';
+import { Subject, NEVER } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
+import { createStore, applyMiddleware, compose } from 'redux';
+import { combineEpics, createEpicMiddleware } from 'redux-observable';
+import epicCreator from './epics/index';
+import socketRegisterCreator from './socket/index';
 import reducer from "./reducers/index";
-import SocketValues from "../constants/SocketValues";
+import ServerConfig from "../constants/ServerConfig";
+import { Client as ClientCreator, Socket as SocketCreator } from '@hatchapp/client';
 
-let socket = io('http://192.168.1.25:8081');
+const Client = ClientCreator({ backend: { base_url: ServerConfig.client.base_url } });
+const Socket = SocketCreator({ url: ServerConfig.socket.url });
 
-const socketIoMiddleware = () => next => action => {
-    const {payload, type} = action;
-    if (type === "socket" && payload != null && payload.message != null) {
-        console.log("socket event fired");
-        socket.emit(payload.message, payload.data);
-        return;
-    }
-    next(action);
-};
+const { createAnonymous } = Client;
+const { createSocket } = Socket;
 
-const store = applyMiddleware(socketIoMiddleware)(createStore)(reducer);
+const { token$ } = createAnonymous();
+const socket$ = createSocket(token$, 'test');
+const action$ = new Subject();
+const state$ = new Subject();
 
-const {EVENTS} = SocketValues;
+function stealMiddleware(ra$, rs$){
+	ra$.subscribe(action$);
+	rs$.subscribe(state$);
+	return NEVER;
+}
 
-Object.keys(EVENTS).forEach(eventKey => {
-    socket.on(EVENTS[eventKey], data => {
-        store.dispatch({type: EVENTS[eventKey], payload: data});
-    });
-});
-socket.on('disconnect', () => {
-    store.dispatch({type: EVENTS.DISCONNECTED})
-})
+// eslint-disable-next-line
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-export default store
+
+const socketRegister = socketRegisterCreator();
+const epicIndex = epicCreator();
+const epicMiddleware = createEpicMiddleware();
+const rootEpic = combineEpics(epicIndex, stealMiddleware);
+const store = createStore(
+	reducer,
+	composeEnhancers(
+		applyMiddleware(epicMiddleware),
+	),
+);
+
+epicMiddleware.run(rootEpic);
+store.dispatch({ type: 'hello', payload: 'world' });
+socket$.pipe(switchMap((socket) => socketRegister(socket, action$, state$, store.dispatch))).subscribe(() => null);
+
+export default store;

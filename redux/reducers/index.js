@@ -1,6 +1,6 @@
 import SocketValues from "../../constants/SocketValues";
 
-const {EVENTS} = SocketValues;
+const { EVENTS } = SocketValues;
 const initialState = {
     isConnected: false,
     messages: [],
@@ -8,8 +8,8 @@ const initialState = {
 };
 
 export default (state = initialState, action) => {
-    const {type, payload} = action;
-    console.log("TYPE: ", type, "PAYLOAD: ", payload);
+    const { type, payload } = action;
+
     switch (type) {
         case EVENTS.ROOM_CONNECTED:
             return {...state, ...payload};
