@@ -7,12 +7,15 @@ import HomeScreen from '../screens/HomeScreen';
 import ScoreBoardScreen from '../screens/ScoreBoardScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 
-const HomeStack = createStackNavigator({
-  Home: HomeScreen,
-});
+const HomeStack = createStackNavigator(
+  { Home: HomeScreen },
+  {
+    headerMode: 'none',
+    navigationOptions: { header: null },
+  },
+);
 
 HomeStack.navigationOptions = {
-  header: null,
   tabBarLabel: 'Home',
   // eslint-disable-next-line
   tabBarIcon: ({ focused }) => (
@@ -27,13 +30,16 @@ HomeStack.navigationOptions = {
   ),
 };
 
-const ScoreBoardStack = createStackNavigator({
-  ScoreBoard: ScoreBoardScreen,
-});
+const ScoreBoardStack = createStackNavigator(
+  { ScoreBoard: ScoreBoardScreen },
+  {
+    headerMode: 'none',
+    navigationOptions: { header: null },
+  },
+);
 
 ScoreBoardStack.navigationOptions = {
-  tabBarLabel: 'ScoreBoardScreen',
-  title: 'ScoreBoardScreen',
+  tabBarLabel: 'ScoreBoard',
   // eslint-disable-next-line
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
@@ -43,13 +49,16 @@ ScoreBoardStack.navigationOptions = {
   ),
 };
 
-const SettingsStack = createStackNavigator({
-  Settings: SettingsScreen,
-});
+const SettingsStack = createStackNavigator(
+  { Settings: SettingsScreen },
+  {
+    headerMode: 'none',
+    navigationOptions: { header: null },
+  },
+);
 
 SettingsStack.navigationOptions = {
   tabBarLabel: 'Settings',
-  title: 'Settings',
   // eslint-disable-next-line
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
@@ -59,12 +68,14 @@ SettingsStack.navigationOptions = {
   ),
 };
 
-export default createBottomTabNavigator({
-  ScoreBoardStack,
-  HomeStack,
-  SettingsStack,
-}, {
-  initialRouteName: 'HomeStack',
-  initialRoute: 'HomeStack',
-  header: null,
-});
+export default createBottomTabNavigator(
+  {
+    ScoreBoardStack,
+    HomeStack,
+    SettingsStack,
+  },
+  {
+    initialRouteName: 'HomeStack',
+    initialRoute: 'HomeStack',
+  },
+);
