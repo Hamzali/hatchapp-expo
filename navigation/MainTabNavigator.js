@@ -1,6 +1,6 @@
 import React from 'react';
-import {Platform} from 'react-native';
-import {createStackNavigator, createBottomTabNavigator} from 'react-navigation';
+import { Platform } from 'react-native';
+import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
 
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
@@ -8,59 +8,63 @@ import ScoreBoardScreen from '../screens/ScoreBoardScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 
 const HomeStack = createStackNavigator({
-    Home: HomeScreen,
+  Home: HomeScreen,
 });
 
 HomeStack.navigationOptions = {
-    header: null,
-    tabBarLabel: 'Home',
-    tabBarIcon: ({focused}) => (
-        <TabBarIcon
-            focused={focused}
-            name={
-                Platform.OS === 'ios'
-                    ? `ios-information-circle${focused ? '' : '-outline'}`
-                    : 'md-information-circle'
-            }
-        />
-    ),
+  header: null,
+  tabBarLabel: 'Home',
+  // eslint-disable-next-line
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={
+        Platform.OS === 'ios'
+          ? `ios-information-circle${focused ? '' : '-outline'}`
+          : 'md-information-circle'
+      }
+    />
+  ),
 };
 
 const ScoreBoardStack = createStackNavigator({
-    ScoreBoard: ScoreBoardScreen,
+  ScoreBoard: ScoreBoardScreen,
 });
 
 ScoreBoardStack.navigationOptions = {
-    tabBarLabel: 'ScoreBoardScreen',
-    title: "ScoreBoardScreen",
-    tabBarIcon: ({focused}) => (
-        <TabBarIcon
-            focused={focused}
-            name={Platform.OS === 'ios' ? `ios-link${focused ? '' : '-outline'}` : 'md-link'}
-        />
-    ),
+  tabBarLabel: 'ScoreBoardScreen',
+  title: 'ScoreBoardScreen',
+  // eslint-disable-next-line
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={Platform.OS === 'ios' ? `ios-link${focused ? '' : '-outline'}` : 'md-link'}
+    />
+  ),
 };
 
 const SettingsStack = createStackNavigator({
-    Settings: SettingsScreen,
+  Settings: SettingsScreen,
 });
 
 SettingsStack.navigationOptions = {
-    tabBarLabel: 'Settings',
-    title: "Settings",
-    tabBarIcon: ({focused}) => (
-        <TabBarIcon
-            focused={focused}
-            name={Platform.OS === 'ios' ? `ios-options${focused ? '' : '-outline'}` : 'md-options'}
-        />
-    ),
+  tabBarLabel: 'Settings',
+  title: 'Settings',
+  // eslint-disable-next-line
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={Platform.OS === 'ios' ? `ios-options${focused ? '' : '-outline'}` : 'md-options'}
+    />
+  ),
 };
 
 export default createBottomTabNavigator({
-    ScoreBoardStack,
-    HomeStack,
-    SettingsStack,
+  ScoreBoardStack,
+  HomeStack,
+  SettingsStack,
 }, {
-    initialRouteName: "HomeStack",
-    initialRoute: "HomeStack"
+  initialRouteName: 'HomeStack',
+  initialRoute: 'HomeStack',
+  header: null,
 });

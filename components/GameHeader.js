@@ -1,39 +1,36 @@
-import React, {Component} from "react";
-import PropTypes from "prop-types";
-import {Button, StyleSheet, Text, View} from "react-native";
-
-
-class GameHeader extends Component {
-    static propTypes = {
-        hatch: PropTypes.number,
-        gameLink: PropTypes.string,
-        time: PropTypes.number
-    };
-
-    static defaultProps = {
-        hatch: 0,
-        gameLink: "",
-        time: 0
-    };
-
-    render() {
-        const {hatch, gameLink} = this.props;
-        return <View style={styles.container}>
-            <Text>{hatch}</Text>
-            <Button
-                title={"copy link"}
-                onPress={() => console.log("conpy link to clipboard", gameLink)}/>
-        </View>
-    }
-}
+import React from 'react';
+import PropTypes from 'prop-types';
+import {
+  Button, StyleSheet, Text, View,
+} from 'react-native';
 
 const styles = StyleSheet.create({
-    container: {
-        paddingTop: 15,
-        justifyContent: "space-around",
-        alignItems: "center",
-        flexDirection: "row"
-    }
+  container: {
+    paddingTop: 15,
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    flexDirection: 'row',
+  },
 });
+
+const GameHeader = ({ hatch, gameLink }) => (
+  <View style={styles.container}>
+    <Text>{hatch}</Text>
+    <Button
+      title="copy link"
+      onPress={() => console.log('conpy link to clipboard', gameLink)}
+    />
+  </View>
+);
+
+GameHeader.propTypes = {
+  hatch: PropTypes.number,
+  gameLink: PropTypes.string,
+};
+
+GameHeader.defaultProps = {
+  hatch: 0,
+  gameLink: '',
+};
 
 export default GameHeader;
