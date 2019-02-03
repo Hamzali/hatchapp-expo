@@ -1,0 +1,10 @@
+{
+  "extends": "airbnb",
+  "parser": "babel-eslint",
+  "rules": {
+    "no-underscore-dangle": ["error", { "allow": ["_id", "_doc"] }],
+    "indent": ["error", 2, { "SwitchCase": 1 }],
+    "react/prop-types": ["error", { "ignore": ["navigation"] }],
+    "react/jsx-filename-extension": "off"
+  }
+}
