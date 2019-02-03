@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "@expo/samples": "2.1.1",
+    "@hatchapp/client": "git+https://github.com/hatchapp/client.git",
     "expo": "^30.0.1",
     "react": "16.3.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-30.0.0.tar.gz",
@@ -22,8 +23,8 @@
     "react-navigation": "^2.16.0",
     "react-redux": "^5.0.7",
     "redux": "^4.0.0",
-    "redux-socket.io": "^1.4.0",
-    "socket.io-client": "^2.1.1"
+    "redux-observable": "^1.0.0",
+    "redux-rxjs-socket.io": "^1.0.1"
   },
   "devDependencies": {
     "babel-preset-es2015": "^6.24.1",
