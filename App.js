@@ -7,8 +7,7 @@ import { Provider } from 'react-redux';
 import PropTypes from 'prop-types';
 import AppNavigator from './navigation/AppNavigator';
 import store from './redux/store';
-import RobotDevPNG from './assets/images/robot-dev.png';
-import RobotProdPNG from './assets/images/robot-prod.png';
+import HatchAppPNG from './assets/images/hatch-app.png';
 import SpaceMonoTTF from './assets/fonts/SpaceMono-Regular.ttf';
 
 const styles = StyleSheet.create({
@@ -32,7 +31,7 @@ export default class App extends React.Component {
   };
 
   loadResourcesAsync = async () => Promise.all([
-    Asset.loadAsync([RobotDevPNG, RobotProdPNG]),
+    Asset.loadAsync([HatchAppPNG]),
     Font.loadAsync({
       // This is the font that we are using for our tab bar
       ...Icon.Ionicons.font,

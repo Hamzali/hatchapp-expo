@@ -4,7 +4,7 @@ import { createStackNavigator, createBottomTabNavigator } from 'react-navigation
 
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
-import ScoreBoardScreen from '../screens/ScoreBoardScreen';
+import ProfileScreen from '../screens/ProfileScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 
 const HomeStack = createStackNavigator(
@@ -30,21 +30,21 @@ HomeStack.navigationOptions = {
   ),
 };
 
-const ScoreBoardStack = createStackNavigator(
-  { ScoreBoard: ScoreBoardScreen },
+const ProfileStack = createStackNavigator(
+  { Profile: ProfileScreen },
   {
     headerMode: 'none',
     navigationOptions: { header: null },
   },
 );
 
-ScoreBoardStack.navigationOptions = {
-  tabBarLabel: 'ScoreBoard',
+ProfileStack.navigationOptions = {
+  tabBarLabel: 'Profile',
   // eslint-disable-next-line
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
-      name={Platform.OS === 'ios' ? `ios-link${focused ? '' : '-outline'}` : 'md-link'}
+      name={Platform.OS === 'ios' ? `ios-person${focused ? '' : '-outline'}` : 'md-person'}
     />
   ),
 };
@@ -70,7 +70,7 @@ SettingsStack.navigationOptions = {
 
 export default createBottomTabNavigator(
   {
-    ScoreBoardStack,
+    ProfileStack,
     HomeStack,
     SettingsStack,
   },

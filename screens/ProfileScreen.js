@@ -9,10 +9,10 @@ const styles = StyleSheet.create({
   },
 });
 
-const ScoreBoardScreen = () => (
+const ProfileScreen = () => (
   <ScrollView style={styles.container}>
-    <Text>ScoreBoard</Text>
+    <Text>Profile</Text>
   </ScrollView>
 );
 
-export default ScoreBoardScreen;
+export default ProfileScreen;
