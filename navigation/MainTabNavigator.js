@@ -75,7 +75,7 @@ export default createBottomTabNavigator(
     SettingsStack,
   },
   {
-    initialRouteName: 'HomeStack',
-    initialRoute: 'HomeStack',
+    initialRouteName: 'ProfileStack',
+    initialRoute: 'ProfileStack',
   },
 );

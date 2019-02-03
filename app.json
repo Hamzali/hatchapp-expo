@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "emojiApp",
+    "name": "Hatch App",
     "description": "A very interesting project.",
-    "slug": "emojiApp",
+    "slug": "hatch-app",
     "privacy": "public",
     "sdkVersion": "30.0.0",
     "platforms": ["ios", "android"],
